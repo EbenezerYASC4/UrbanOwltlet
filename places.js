@@ -28,7 +28,16 @@ app.get('/checkdb', (req, res)=>{
         res.send(result);
     })
 });
-app.get('/addprofile', (req, res)=>{  
+app.post('/register', (req, res)=>{
+    const {name, email, address, ID } = req.query;  
+    let sql = `INSERT INTO profiletb VALUES (?,?,?,?)`;
+    db.query(sql,[name, email,address, ID], (err, result)=>{
+        if (err)throw err;
+        console.log(result);
+        res.send(result);
+    })
+    
+
     
 });
 
